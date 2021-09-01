@@ -1,0 +1,82 @@
+:markup-in-source: verbatim,attributes,quotes
+:CHE_URL: http://codeready-workspaces.%APPS_HOSTNAME_SUFFIX%
+:USER_ID: %USER_ID%
+:OPENSHIFT_PASSWORD: %OPENSHIFT_PASSWORD%
+:OPENSHIFT_CONSOLE_URL: https://console-openshift-console.%APPS_HOSTNAME_SUFFIX%/topology/ns/chaos-engineering{USER_ID}/graph
+:APPS_HOSTNAME_SUFFIX: %APPS_HOSTNAME_SUFFIX%
+:KIALI_URL: https://kiali-istio-system.%APPS_HOSTNAME_SUFFIX%
+:GRAFANA_URL: https://grafana-istio-system.%APPS_HOSTNAME_SUFFIX%
+
+= Design Chaos experiments
+
+_2 MINUTE PRACTICE_
+
+
+== What is Chaos Engineering?
+
+[sidebar]
+.Principles of Chaos Engineering
+--
+According to the Principles of Chaos Engineering (https://principlesofchaos.org/[https://principlesofchaos.org/^]), 
+
+* **Chaos Engineering** is the discipline of experimenting on a system in order to build confidence in the system's capability to withstand turbulent conditions in production.
+* **Chaos Engineering**'s sole purpose is to provide evidence of system weaknesses (sometimes called https://snafucatchers.github.io/#4_6_Dark_Debt[Dark Debt^])
+--
+
+Take an example where you have two services that communicate with each other. 
+
+image::images/simple-2-service.png[simple-2-service - A simple two-service system, 700]
+
+* What should happen if **Service Y** dies ? 
+
+* What will happen to **Service X** if **Service Y** starts responding slowly ? 
+
+* What happens if **Service Y** comes back after going away for a period of time? 
+
+* What happens is the connection between **Service X** and **Service Y** becomes increasingly busy ? 
+
+* What happens if the CPU that is being used by **Service Y** is maxed out ? and most importanlty, what does this all mean to the user ?
+
+You might believe you've designed the services and the infrastructure perfectly to accomodate all of these cases, but _**how to you know**_ ? Even in such a simple system it is likely tere might be some surprises --some **dark debt** -- present. 
+
+**Chaos engineering provides a way of exploring these uncertainties to find out whether your assumptions of the system's resiliency hold water in the real world.** 
+
+== Plan a Chaos Experiment
+
+**Chaos Engineering** begins by asking the question : 
+
+**"Do we know what the system might do in this case ?"**
+
+
+image::images/process-chaos.png[process-chaos, 800]
+
+The general process for chaos engineering looks as follows:
+
+1. **Define a steady-state hypothesis:** You need to start with an idea of what can go awry. Start with a failure to inject and predict an outcome for when it is running live.
+
+2. **Confirm the steady-state and simulate some real-world events:** Perform tests using real-world scenarios to see how your system behaves under particular stress conditions or circumstances.
+
+3.  **Confirm the steady-state again:** We need to confirm what changes occurred, so checking it again gives us insights into system behavior.
+
+4.  **Collect metrics and observe dashboards:** You need to measure your system’s durability and availability. It is best practice to use key performance metrics that correlate with customer success or usage. We want to measure the failure against our hypothesis by looking at factors like impact on latency or requests per second.
+
+5. **Make changes and fix issues:** After running an experiment, you should have a good idea of what is working and what needs to be altered. Now we can identify what will lead to an outage, and we know exactly what breaks the system. So, go fix it, and try again with a new experiment.
+
+
+=======
+image::images/chaos-engineering-process.png[chaos-engineering-process, 600]
+=======
+
+Later on this workshop we will use **Openshift Service Mesh** to inject failures in our **Experiment** .
+
+
+image::images/Chaos-Learning-Loop.png[chaos-engineering-learning-loop, 800]
+
+
+Following the **Chaos Engineering Learning Loop** the initial step is to **Explore** the target system, i.e our application, to attempt to surface or **discover** any weaknesses. The **Experiments** we will use are already written for you, using (xref:chaos-latency.adoc[5. Chaos Experiment 1: Network latency]) and (xref:chaos-error.adoc[6. Chaos Experiment 2: Unavailable Service]).
+
+**Kiali** and **Openshift Developer Console** (xref:chaos-explore.adoc[3. Explore the Application]) will allow you to **explore** and to **discover** the application. **Grafana** (xref:chaos-metrics.adoc[4. Define and monitor Chaos metrics] is part of the Discovery of the application too. 
+
+When you will be ready to execute your experiment (xref:chaos-latency.adoc[5. Chaos Experiment 1: Network latency]) and (xref:chaos-error.adoc[6. Chaos Experiment 2: Unavailable Service]) you will see how the target system is reacting. You will enter the **discovery** and **analysis** phases of the **Chaos Engineering Learning Loop** and after the **analysis** you will **Improve** and **Validate** the correction made.
+
+

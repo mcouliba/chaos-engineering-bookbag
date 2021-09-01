@@ -1,16 +1,22 @@
 ---
 modules:
-  overview:
-    name: Overview
-    exit_sign: Continue
-  exercise1:
-    name: Exercise 1
-    exit_sign: Continue
-  exercise2:
-    name: Exercise 2
-    exit_sign: Continue
-  exercise3:
-    name: Exercise 3
-    exit_sign: Continue
-  review:
-    name: Review
+  chaos-design:
+    name: "1. Design Chaos experiments"
+    exit_sign: Next
+  chaos-environment:
+    name: "2. Get your Chaos environment"
+    exit_sign: Next
+  chaos-explore:
+    name: "3. Explore the Application"
+    exit_sign: Next
+  chaos-metrics:
+    name: "4. Define and monitor Chaos metrics"
+    exit_sign: Next
+  chaos-latency:
+    name: "5. Chaos Experiment 1: Network latency"
+    exit_sign: Next
+  chaos-error:
+    name: "6. Chaos Experiment 2: Unavailable Service"
+    exit_sign: Next
+  faq:
+    name: "7. FAQ"

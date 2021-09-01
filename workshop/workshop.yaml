@@ -1,9 +1,11 @@
 ---
-name: Bookbag Template
+name: OpenShift Chaos Engineering Workshop
 modules:
   activate:
-    - overview
-    - exercise1
-    - exercise2
-    - exercise3
-    - review
+    - chaos-design
+    - chaos-environment
+    - chaos-explore
+    - chaos-metrics
+    - chaos-latency
+    - chaos-error
+    - faq

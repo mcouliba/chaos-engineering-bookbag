@@ -1,8 +1,7 @@
 {
-    "guid": "abcde",
-    "example_var": 42,
-    "ssh_command": "ssh lab-user@bastion.abcde.example.com",
-    "ssh_password": "p4ssword!1",
-    "user": "lab-user",
-    "user_info_messages": "Example workshop messages:\nHello, World"
+        "APPS_HOSTNAME_SUFFIX" : "192.168.99.100.nip.io",
+		"USER_ID" : "0",
+		"OPENSHIFT_PASSWORD" : "password", 
+		"WORKSHOP_GIT_REPO" : "https://github.com/mcouliba/chaos-engineering-workshop",
+		"WORKSHOP_GIT_REF" : "5.0"
 }
